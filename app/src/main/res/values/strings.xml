@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">rideBookTest</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_ride_context">Edit Ride</string>
+    <string name="delete_ride_context">Delete Ride</string>
+    <string name="date_input">Input Date</string>
+</resources>

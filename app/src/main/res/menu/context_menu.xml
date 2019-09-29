@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="100sp"
+    android:layout_width="100sp">
+
+    <item
+        android:id="@+id/edit_ride"
+        android:title="@string/edit_ride_context" />
+
+    <item
+        android:id="@+id/delete_ride"
+        android:title="@string/delete_ride_context" />
+
+</menu>
