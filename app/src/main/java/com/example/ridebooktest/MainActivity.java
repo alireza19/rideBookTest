@@ -8,7 +8,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
     ListView rideList;
     ArrayAdapter<Ride> rideAdapter;
     ArrayList<Ride> rideDataList;
+//    DialogFragment addRideFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +46,12 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
             public void onClick(View view) {
                 Snackbar.make(view, "Add a ride", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+//                addRideFragment = new AddRideFragment();
                 new AddRideFragment().show(getSupportFragmentManager(), "ADD RIDE");
             }
         });
 
         registerForContextMenu(rideList);
-
     }
 
     @Override
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
         switch (item.getItemId()) {
             case R.id.edit_ride:
                 Toast.makeText(this, "Edit your ride...", Toast.LENGTH_SHORT).show();
-                editRide(info.position);
+                editRideContext(info.position);
                 return true;
             case R.id.delete_ride:
                 Toast.makeText(this, "Ride Deleted", Toast.LENGTH_SHORT).show();
@@ -81,10 +85,12 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
         }
     }
 
-    public void editRide(int position){
-        // TODO edit the selected ride specified by itemId
-        // give the position of the selectedRide object to the ride manager
-        
+    public void editRideContext(int position){
+        AddRideFragment.newInstance(rideDataList.get(position)).show(getSupportFragmentManager(), "edit_ride");
+    }
+
+    public void editRide(){
+        rideAdapter.notifyDataSetChanged();
     }
 
     public void deleteRide(int position){

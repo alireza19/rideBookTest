@@ -1,8 +1,9 @@
 package com.example.ridebooktest;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Ride {
+public class Ride implements Serializable {
     private String date;
 
     public Ride(String date) {
