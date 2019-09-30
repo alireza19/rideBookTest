@@ -4,5 +4,10 @@
     <string name="action_settings">Settings</string>
     <string name="edit_ride_context">Edit Ride</string>
     <string name="delete_ride_context">Delete Ride</string>
-    <string name="date_input">Input Date</string>
+    <string name="date_input">Input Date: yyyy-mm-dd format</string>
+    <string name="time_input">Input Time: hh:mm format</string>
+    <string name="distance_input">Input Distance</string>
+    <string name="speed_input">Input speed</string>
+    <string name="cadence_input">Input cadence</string>
+    <string name="comment_input">Write a short comment</string>
 </resources>

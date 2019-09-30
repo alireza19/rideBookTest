@@ -13,21 +13,26 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AddRideFragment.OnFragmentInteractionListener{
 
-    ListView rideList;
-    ArrayAdapter<Ride> rideAdapter;
-    ArrayList<Ride> rideDataList;
+    private ListView rideList;
+    private ArrayAdapter<Ride> rideAdapter;
+    private ArrayList<Ride> rideDataList;
+    private TextView totalDistanceView;
+    private float totalDistance = 0.0f;
 //    DialogFragment addRideFragment;
 
     @Override
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        totalDistanceView = findViewById(R.id.totalDistance);
+        totalDistanceView.setText(String.valueOf(totalDistance));
         rideList = findViewById(R.id.ride_list);
         rideDataList = new ArrayList<>();
         rideAdapter = new CustomList(this, rideDataList);
@@ -56,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
 
     @Override
     public void onOkPressed(Ride newRide) {
+        float toAdd = newRide.getDistance();
+        totalDistance += toAdd;
+        totalDistanceView.setText(String.valueOf(totalDistance));
         rideAdapter.add(newRide);
     }
 
@@ -90,12 +100,18 @@ public class MainActivity extends AppCompatActivity implements AddRideFragment.O
     }
 
     public void editRide(){
+        totalDistanceView.setText(String.valueOf(totalDistance));
         rideAdapter.notifyDataSetChanged();
     }
 
+
     public void deleteRide(int position){
         // TODO: get the ride's distance and remove it from total distance
-        rideAdapter.remove(rideDataList.get(position));
+        Ride selectedRide = rideDataList.get(position);
+        float toRemove = selectedRide.getDistance();
+        totalDistance -= toRemove;
+        totalDistanceView.setText(String.valueOf(totalDistance));
+        rideAdapter.remove(selectedRide);
         rideAdapter.notifyDataSetChanged();
     }
 

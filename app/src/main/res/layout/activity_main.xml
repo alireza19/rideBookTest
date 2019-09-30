@@ -7,11 +7,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/ride_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 <!--    <com.google.android.material.appbar.AppBarLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
@@ -34,5 +29,23 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/ride_list"
+            android:layout_width="match_parent"
+            android:layout_height="630sp">
+        </ListView>
+
+        <TextView
+            android:id="@+id/totalDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOME SOME SOME">
+        </TextView>
+
+    </LinearLayout>
 
 </FrameLayout>
